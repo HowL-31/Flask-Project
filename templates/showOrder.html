@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="container w-50">
+    <H3 class="text-center mt-4">All Orders (Date Wise)</H3>
+    <table class="table mb-5 mt-3">
+        <thead>
+            <tr>
+                <th>Sr No</th>
+                <th>Order No</th>
+                <th>Order date</th>
+                <th>Customer</th>
+                <th>Total Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in orders %}
+            <tr>
+                <td>
+                    {{loop.index}}
+                </td>
+                <td>
+                    {{i["order_no"]}}
+                </td>
+                <td>
+                    {{i["order_date"]}}
+                </td>
+                <td>
+                    {{i["name"]}}
+                </td>
+                <td>
+                    {{i["total_value"]}}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function addRows(){
+        let div = document.getElementById("items")
+        let no = div.getElementsByClassName("row").length + 1
+        let ele = div.innerHTML + '<div class="row"><div class="col-xl-6 col-lg-6 col-md-4 col-sm-3"><label for="exampleInputEmail1" class="form-label">Item Name: </label><input type="text" class="form-control" name="name'+ no +'"></div><div class="col-xl-6 col-lg-6 col-md-4 col-sm-3"><label for="exampleInputEmail1" class="form-label">Item Price: </label><input type="number" step="0.01" class="form-control" name="price'+ no +'"></div></div>'
+        div.innerHTML = ele
+    }
+</script>
+
+{% endblock %}
